@@ -18,7 +18,7 @@ function Shape(x, y, velX, velY, exists) {
   this.y = y;
   this.velX = velX;
   this.velY = velY;
-  this.exists = exists;
+  this.exists = true;
 }
 
 // creating Ball constructor which inherits Shape

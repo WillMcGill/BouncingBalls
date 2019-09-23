@@ -90,7 +90,7 @@ EvilCircle.prototype.setControls = function(){
 
 EvilCircle.prototype.collisionDetect = function() {
   for(var j = 0; j < balls.length; j++) {
-    if(!(balls[j].exists === true)) {
+    if((balls[j].exists == true)) {
       var dx = this.x - balls[j].x;
       var dy = this.y - balls[j].y;
       var distance = Math.sqrt(dx * dx + dy * dy);
@@ -103,6 +103,7 @@ EvilCircle.prototype.collisionDetect = function() {
 };
 
 Ball.prototype.draw = function() {
+  
   ctx.beginPath();
   //ctx.lineWidth = 3;
   ctx.fillStyle = this.color;
@@ -178,15 +179,18 @@ function loop() {
   ctx.fillRect(0,0,width,height);
   
   for(var i = 0; i < balls.length; i++) {
+    
+    if (balls[i].exists){
     balls[i].draw();
     balls[i].update();
-    balls[i].collisionDetect();
+    balls[i].collisionDetect();}
     
     
   }
     evilCircle.draw();
     evilCircle.update();
     evilCircle.collisionDetect();
+    
 
   requestAnimationFrame(loop);
 }

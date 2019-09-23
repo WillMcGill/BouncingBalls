@@ -12,28 +12,28 @@ function random(min,max) {
   var num = Math.floor(Math.random()*(max-min)) + min;
   return num;
 }
-// created shape prototype constructor
+
+// define Ball constructor
+
 function Shape(x, y, velX, velY, exists) {
   this.x = x;
   this.y = y;
   this.velX = velX;
   this.velY = velY;
-  this.exists = true;
+  this.exists = exists;
 }
 
-// creating Ball constructor which inherits Shape
+// define Ball constructor, inheriting from Shape
 
 function Ball(x, y, velX, velY, exists, color, size) {
   Shape.call(this, x, y, velX, velY, exists);
+
   this.color = color;
   this.size = size;
-
 }
 
 Ball.prototype = Object.create(Shape.prototype);
 Ball.prototype.constructor = Ball;
-
-// define ball draw method
 
 Ball.prototype.draw = function() {
   ctx.beginPath();
@@ -41,7 +41,6 @@ Ball.prototype.draw = function() {
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.fill();
 };
-
 // define ball update method
 
 Ball.prototype.update = function() {
@@ -94,6 +93,7 @@ while(balls.length < 25) {
     random(0 + size,height - size),
     random(-7,7),
     random(-7,7),
+    true,
     'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
     size
   );

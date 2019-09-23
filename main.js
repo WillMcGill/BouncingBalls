@@ -57,19 +57,19 @@ EvilCircle.prototype.draw = function() {
 
 EvilCircle.prototype.update = function() {
   if((this.x + this.size) >= width) {
-    this.x = (this.size);
+    this.x -= this.size;
   }
 
   if((this.x - this.size) <= 0) {
-    this.x = (this.size);
+    this.x += this.size;
   }
 
   if((this.y + this.size) >= height) {
-    this.y = (this.size);
+    this.y -= this.size;
   }
 
   if((this.y - this.size) <= 0) {
-    this.y = (this.size);
+    this.y += this.size;
   }
 };
 

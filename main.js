@@ -88,19 +88,9 @@ EvilCircle.prototype.setControls = function(){
     }
 }
 
-EvilCircle.prototype.collisionDetect = function() {
-  for(var j = 0; j < balls.length; j++) {
-    if((balls[j].exists == true)) {
-      var dx = this.x - balls[j].x;
-      var dy = this.y - balls[j].y;
-      var distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < this.size + balls[j].size) {
-        balls[j].exists = false;
-      }
-    }
-  }
-};
+
+
 
 Ball.prototype.draw = function() {
   
@@ -168,9 +158,24 @@ while(balls.length < 25) {
   );
   balls.push(ball);
 }
-
+var counter = balls.length;
+var htmlCounter = document.getElementById("counter");
 // define loop that keeps drawing the scene constantly
+EvilCircle.prototype.collisionDetect = function() {
+  for(var j = 0; j < balls.length; j++) {
+    if((balls[j].exists == true)) {
+      var dx = this.x - balls[j].x;
+      var dy = this.y - balls[j].y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
 
+      if (distance < this.size + balls[j].size) {
+        balls[j].exists = false;
+        counter--;
+        document.getElementById("counter").innerHTML = 'Ball Count: ' + counter;
+      }
+    }
+  }
+};
 var evilCircle = new EvilCircle(10, 10, true);
 evilCircle.setControls();
 
@@ -194,6 +199,8 @@ function loop() {
 
   requestAnimationFrame(loop);
 }
+
+
 
 
 
